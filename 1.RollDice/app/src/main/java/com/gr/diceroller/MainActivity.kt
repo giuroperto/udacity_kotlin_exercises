@@ -6,23 +6,30 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.gr.diceroller.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var rollButton: Button
+//    private lateinit var rollButton: Button
 //    private lateinit var resultText: TextView
-    private lateinit var diceImage: ImageView
+//    private lateinit var diceImage: ImageView
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        rollButton = findViewById(R.id.roll_button)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        rollButton.text = "Let's Roll"
+//        rollButton = findViewById(R.id.roll_button)
 
-        rollButton.setOnClickListener {
+//        using view binding instead
+        binding.rollButton.text = "Let's Roll"
+
+        binding.rollButton.setOnClickListener {
 //            Toast.makeText(this, "Button Clicked!", Toast.LENGTH_SHORT).show()
             rollDice()
         }
@@ -31,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     fun rollDice() {
         val randomInt = Random().nextInt(6) + 1
 
-        diceImage = findViewById(R.id.dice_image)
+//        diceImage = findViewById(R.id.dice_image)
 
         val drawableResource = when (randomInt) {
             1 -> R.drawable.dice_1
@@ -42,7 +49,8 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImage.setImageResource(drawableResource)
+//        using view binding instead
+        binding.diceImage.setImageResource(drawableResource)
 
 //        resultText = findViewById(R.id.result_text)
 //        resultText.text = randomInt.toString()
