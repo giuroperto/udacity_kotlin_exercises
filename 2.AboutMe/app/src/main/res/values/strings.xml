@@ -9,4 +9,6 @@
         \n\nCiao!
     </string>
     <string name="bio_icon">email icon</string>
+    <string name="whats_your_nickname">What\'s your nickname?</string>
+    <string name="done">Done</string>
 </resources>
