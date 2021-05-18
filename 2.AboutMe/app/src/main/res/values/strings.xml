@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">AboutMe</string>
     <string name="name">Giulia</string>
+    <string name="img_description">Star icon</string>
+    <string name="my_bio">Ciao, sono Giulia, molto lieta di conoscerla!
+        \n\nSono brasiliana, nata a San Paolo, pero` come i miei antenati erano italiani, anche io sono una cittadina italiana. Inoltre, sono pure un po\' giapponesa!
+        \n\nA me piace tantissimo viaggiare! L\'Argentina `e stata l\'ultimo paese che ho visitato… prima di tutto questo casino cominciare.
+        \n\nAdesso non vedo l\'ora di poter andare da qualunque parte di nuovo, senza preoccuparmi, e di vivere tutte l\'esperinze che abbiamo perso negli ultimi 2 anni.
+        \n\nCiao!
+    </string>
+    <string name="bio_icon">email icon</string>
 </resources>
