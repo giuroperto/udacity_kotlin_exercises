@@ -5,35 +5,50 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.databinding.DataBindingUtil
 import com.gr.android.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+//    instance of MyName data class
+    private val myName: MyName = MyName("Giulia 1")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+//        VIEW BINDING
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        val view = binding.root
+//        setContentView(view)
+
+//        DATA BINDING
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.myName = myName
 
         binding.doneBtn.setOnClickListener {
-            addNickname()
+            addNickname(it)
 
 //            Hide the keyboard
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
     }
 
-    fun addNickname() {
-        val nickname = binding.nicknameEdit.text
-        binding.nicknameText.apply {
-            text = nickname
-            visibility = View.VISIBLE
+    private fun addNickname(view: View) {
+//        val nickname = binding.nicknameEdit.text
+        binding.apply {
+            myName?.nickname = nicknameEdit.text.toString()
+//            nicknameText.text = nickname
+
+//            ivalidate all binding expressions and request a new rebind to refresh UI
+            invalidateAll()
+
+            nicknameText.visibility = View.VISIBLE
+            nicknameEdit.visibility = View.GONE
+            doneBtn.visibility = View.GONE
         }
-        binding.nicknameEdit.visibility = View.GONE
-        binding.doneBtn.visibility = View.GONE
     }
 }
