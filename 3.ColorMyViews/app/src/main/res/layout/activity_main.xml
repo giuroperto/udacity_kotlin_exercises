@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -67,6 +69,63 @@
         app:layout_constraintStart_toEndOf="@id/box_two_text"
         app:layout_constraintTop_toBottomOf="@id/box_four_text"
         android:layout_marginStart="@dimen/margin"
+        />
+
+    <TextView
+        android:id="@+id/label_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/how_to_play"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/info_text"
+        tools:layout_editor_absoluteY="348dp" />
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/tap_boxes_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/label_text"
+        app:layout_constraintTop_toBottomOf="@id/box_two_text"
+        app:layout_constraintVertical_bias="0.113" />
+
+    <Button
+        android:id="@+id/red_btn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/yellow_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/yellow_btn"
+        android:text="@string/red"
+        android:layout_marginStart="16dp"
+        />
+
+    <Button
+        android:id="@+id/yellow_btn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/green_btn"
+        app:layout_constraintStart_toEndOf="@id/red_btn" />
+
+    <Button
+        android:id="@+id/green_btn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/yellow_btn"
+        app:layout_constraintBaseline_toBaselineOf="@id/yellow_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/green"
+        android:layout_marginEnd="16dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
