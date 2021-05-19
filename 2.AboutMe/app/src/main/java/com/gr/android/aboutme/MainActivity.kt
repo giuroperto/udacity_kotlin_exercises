@@ -18,14 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        VIEW BINDING
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        val view = binding.root
-//        setContentView(view)
-
-//        DATA BINDING
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         binding.myName = myName
 
         binding.doneBtn.setOnClickListener {
@@ -38,10 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNickname(view: View) {
-//        val nickname = binding.nicknameEdit.text
         binding.apply {
             myName?.nickname = nicknameEdit.text.toString()
-//            nicknameText.text = nickname
 
 //            ivalidate all binding expressions and request a new rebind to refresh UI
             invalidateAll()
