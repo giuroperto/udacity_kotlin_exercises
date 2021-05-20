@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    
+    <data>
+<!--        <variable-->
+<!--            name=""-->
+<!--            type="" />-->
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mood_picker_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".moodPickerFragment"
+        >
+
+        <TextView
+            android:id="@+id/mood_picker_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:text="@string/mood_picker_title"
+            android:textAlignment="center"
+            android:textSize="@dimen/title_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/basic_text" />
+
+        <TextView
+            android:id="@+id/mood_picker_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/mood_picker_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/mood_picker_desc"
+            android:textSize="@dimen/regular_txt"
+            style="@style/basic_text"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginHorizontal="@dimen/margin_h"
+            />
+
+        <ImageView
+            android:id="@+id/angry_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_angry_foreground"
+            app:layout_constraintTop_toBottomOf="@id/mood_picker_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/smug_img"
+            app:layout_constraintBottom_toTopOf="@id/uwu_img"
+            />
+
+        <ImageView
+            android:id="@+id/gray_filter_angry"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            app:srcCompat="@drawable/round_filter"
+            app:layout_constraintTop_toBottomOf="@id/mood_picker_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/smug_img"
+            app:layout_constraintBottom_toTopOf="@id/uwu_img"
+            android:visibility="gone"
+
+            />
+
+        <ImageView
+            android:id="@+id/smug_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_smug_foreground"
+            app:layout_constraintTop_toBottomOf="@id/mood_picker_description"
+            app:layout_constraintStart_toEndOf="@id/angry_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/yummy_img"
+            />
+
+        <ImageView
+            android:id="@+id/gray_filter_smug"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            app:srcCompat="@drawable/round_filter"
+            app:layout_constraintTop_toBottomOf="@id/mood_picker_description"
+            app:layout_constraintStart_toEndOf="@id/angry_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/yummy_img"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/uwu_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_uwu_foreground"
+            app:layout_constraintTop_toBottomOf="@id/angry_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/yummy_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/gray_filter_uwu"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            app:srcCompat="@drawable/round_filter"
+            app:layout_constraintTop_toBottomOf="@id/angry_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/yummy_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/yummy_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_yummy_foreground"
+            app:layout_constraintTop_toBottomOf="@id/smug_img"
+            app:layout_constraintStart_toEndOf="@id/uwu_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/gray_filter_yummy"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            app:srcCompat="@drawable/round_filter"
+            app:layout_constraintTop_toBottomOf="@id/smug_img"
+            app:layout_constraintStart_toEndOf="@id/uwu_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</layout>
+
