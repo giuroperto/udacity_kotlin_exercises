@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.gr.android.moodapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         navController = this.findNavController(R.id.nav_host_fragm)
+
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean = navController.navigateUp()

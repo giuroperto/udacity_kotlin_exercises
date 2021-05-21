@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/moodPickerFragment3">
+    app:startDestination="@id/titleFragment">
+
     <fragment
-        android:id="@+id/titleFragment3"
+        android:id="@+id/titleFragment"
         android:name="com.gr.android.moodapp.titleFragment"
         android:label="fragment_title"
         tools:layout="@layout/fragment_title" >
         <action
-            android:id="@+id/action_titleFragment3_to_moodPickerFragment3"
-            app:destination="@id/moodPickerFragment3" />
+            android:id="@+id/action_titleFragment_to_moodPickerFragment"
+            app:destination="@id/moodPickerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/moodPickerFragment3"
+        android:id="@+id/moodPickerFragment"
         android:name="com.gr.android.moodapp.moodPickerFragment"
         android:label="moodPickerFragment" />
     <fragment
