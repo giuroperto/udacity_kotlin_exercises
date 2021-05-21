@@ -3,9 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/moodPickerFragment2">
+    app:startDestination="@id/moodPickerFragment3">
     <fragment
-        android:id="@+id/moodPickerFragment2"
+        android:id="@+id/titleFragment3"
+        android:name="com.gr.android.moodapp.titleFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_title" >
+        <action
+            android:id="@+id/action_titleFragment3_to_moodPickerFragment3"
+            app:destination="@id/moodPickerFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/moodPickerFragment3"
         android:name="com.gr.android.moodapp.moodPickerFragment"
         android:label="moodPickerFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.gr.android.moodapp.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

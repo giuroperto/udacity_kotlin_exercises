@@ -50,8 +50,6 @@ class moodPickerFragment : Fragment() {
     private fun greyAllOut(view: View, list: List<View>) {
         for (item in list) {
             if (item.id != view.id) {
-                // TODO: 20/05/2021 change other icons color to gray
-                // TODO: 20/05/2021 if someone keep clicking it should always change the current icon back to normal colors
                 item.rotation = 45.0F
 
                 binding.apply {

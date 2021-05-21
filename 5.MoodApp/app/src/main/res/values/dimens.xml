@@ -2,6 +2,7 @@
 <resources>
     <dimen name="margin_h">10dp</dimen>
     <dimen name="margin_top">20dp</dimen>
-    <dimen name="title_txt">24sp</dimen>
-    <dimen name="regular_txt">18sp</dimen>
+    <dimen name="margin_top_extra">40dp</dimen>
+    <dimen name="title_txt">30sp</dimen>
+    <dimen name="regular_txt">24sp</dimen>
 </resources>

@@ -5,4 +5,11 @@
         <item name="android:textColor">@color/dark_gray</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
+
+    <style name="app_title">
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/main_title</item>
+        <item name="android:textSize">60sp</item>
+    </style>
 </resources>

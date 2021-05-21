@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".moodPickerFragment"
+        android:background="@color/t_dark_gray"
         >
 
         <TextView
@@ -42,7 +43,7 @@
             android:text="@string/mood_picker_desc"
             android:textSize="@dimen/regular_txt"
             style="@style/basic_text"
-            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginTop="@dimen/margin_top_extra"
             android:layout_marginHorizontal="@dimen/margin_h"
             />
 

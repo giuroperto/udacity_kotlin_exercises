@@ -4,4 +4,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mood_picker_title">Mood Picker</string>
     <string name="mood_picker_desc">Select your mood of the day</string>
+    <string name="app_title">MOOD TRACKER</string>
+    <string name="track_btn">Track</string>
+    <string name="about">About</string>
+    <string name="mood_tracker_desc">If you want the full experience and benefits of using this MOOD TRACKER, you should do it on a daily basis.
+        \n\nIt will definitely help you track your mood swings and it will show you at the end which was your mood of the month.
+        \n\nAlone, this app won\'t do much for your mental health, so it\'s on you to make some changes in your life and chase the good feelings and let
+        the all the other emotions go away. </string>
 </resources>
