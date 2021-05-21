@@ -2,7 +2,7 @@
 <resources>
 
     <style name="basic_text">
-        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textColor">@color/light_gray</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
