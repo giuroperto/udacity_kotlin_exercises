@@ -11,4 +11,6 @@
         \n\nIt will definitely help you track your mood swings and it will show you at the end which was your mood of the month.
         \n\nAlone, this app won\'t do much for your mental health, so it\'s on you to make some changes in your life and chase the good feelings and let
         the all the other emotions go away. </string>
+    <string name="info">Info</string>
+    <string name="about">About</string>
 </resources>

@@ -24,4 +24,10 @@
         android:name="com.gr.android.moodapp.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.gr.android.moodapp.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info"
+        />
 </navigation>
