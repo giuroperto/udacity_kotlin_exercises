@@ -56,6 +56,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/smug_img"
             app:layout_constraintBottom_toTopOf="@id/uwu_img"
+            android:layout_marginTop="@dimen/margin_top_extra"
             />
 
         <ImageView
@@ -67,6 +68,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/smug_img"
             app:layout_constraintBottom_toTopOf="@id/uwu_img"
+            android:layout_marginTop="@dimen/margin_top_extra"
             android:visibility="gone"
 
             />
@@ -80,6 +82,7 @@
             app:layout_constraintStart_toEndOf="@id/angry_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/yummy_img"
+            android:layout_marginTop="@dimen/margin_top_extra"
             />
 
         <ImageView
@@ -92,18 +95,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/yummy_img"
             android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_top_extra"
             />
 
         <ImageView
             android:id="@+id/uwu_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_uwu_foreground"
-            app:layout_constraintTop_toBottomOf="@id/angry_img"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/save_btn"
             app:layout_constraintEnd_toStartOf="@id/yummy_img"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/angry_img"
+            app:srcCompat="@mipmap/ic_uwu_foreground" />
 
         <ImageView
             android:id="@+id/gray_filter_uwu"
@@ -113,7 +116,7 @@
             app:layout_constraintTop_toBottomOf="@id/angry_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/yummy_img"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/save_btn"
             android:visibility="gone"
             />
 
@@ -121,12 +124,11 @@
             android:id="@+id/yummy_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_yummy_foreground"
-            app:layout_constraintTop_toBottomOf="@id/smug_img"
-            app:layout_constraintStart_toEndOf="@id/uwu_img"
+            app:layout_constraintBottom_toTopOf="@id/save_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintStart_toEndOf="@id/uwu_img"
+            app:layout_constraintTop_toBottomOf="@id/smug_img"
+            app:srcCompat="@mipmap/ic_yummy_foreground" />
 
         <ImageView
             android:id="@+id/gray_filter_yummy"
@@ -136,8 +138,20 @@
             app:layout_constraintTop_toBottomOf="@id/smug_img"
             app:layout_constraintStart_toEndOf="@id/uwu_img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/save_btn"
             android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/uwu_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="@dimen/title_txt"
+            android:text="@string/save"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

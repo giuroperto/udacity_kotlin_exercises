@@ -18,7 +18,11 @@
     <fragment
         android:id="@+id/moodPickerFragment"
         android:name="com.gr.android.moodapp.moodPickerFragment"
-        android:label="moodPickerFragment" />
+        android:label="moodPickerFragment" >
+        <action
+            android:id="@+id/action_moodPickerFragment_to_moodFragment"
+            app:destination="@id/moodFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.gr.android.moodapp.AboutFragment"
@@ -30,4 +34,9 @@
         android:label="fragment_info"
         tools:layout="@layout/fragment_info"
         />
+    <fragment
+        android:id="@+id/moodFragment"
+        android:name="com.gr.android.moodapp.MoodFragment"
+        android:label="fragment_mood"
+        tools:layout="@layout/fragment_mood" />
 </navigation>

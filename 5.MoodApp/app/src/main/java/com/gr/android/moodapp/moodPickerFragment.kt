@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.gr.android.moodapp.databinding.FragmentMoodPickerBinding
 
 class moodPickerFragment : Fragment() {
 
     private lateinit var binding: FragmentMoodPickerBinding
+    private var moodCount: MutableList<Int> = mutableListOf(0, 0, 0, 0)
+    private var selectedMood: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +25,13 @@ class moodPickerFragment : Fragment() {
 
         moodListener()
 
+        binding.saveBtn.setOnClickListener {
+            selectedMood?.let {
+                countClick(it)
+                Toast.makeText(context, "Count ${moodCount}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         return binding.root
     }
 
@@ -32,6 +42,7 @@ class moodPickerFragment : Fragment() {
             item.setOnClickListener {
                 changeBackground(it)
                 greyAllOut(it, clickableMoods)
+                selectMood(it)
             }
         }
     }
@@ -47,6 +58,8 @@ class moodPickerFragment : Fragment() {
         }
     }
 
+
+    // TODO: 22/05/2021 refactor this part
     private fun greyAllOut(view: View, list: List<View>) {
         for (item in list) {
             if (item.id != view.id) {
@@ -83,6 +96,19 @@ class moodPickerFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun countClick(view: View) {
+        when (view.id) {
+            R.id.angry_img -> moodCount[0] += 1
+            R.id.yummy_img -> moodCount[3] += 1
+            R.id.uwu_img -> moodCount[2] += 1
+            R.id.smug_img -> moodCount[1] += 1
+        }
+    }
+
+    private fun selectMood(view: View) {
+        selectedMood = view
     }
 
 }

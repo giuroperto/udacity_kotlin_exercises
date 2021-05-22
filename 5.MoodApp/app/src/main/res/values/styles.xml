@@ -12,4 +12,12 @@
         <item name="android:textColor">@color/main_title</item>
         <item name="android:textSize">60sp</item>
     </style>
+
+    <style name="mood_number">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_extra</item>
+    </style>
 </resources>
