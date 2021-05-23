@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.gr.android.moodapp.databinding.FragmentMoodPickerBinding
 
-class moodPickerFragment : Fragment() {
+class MoodPickerFragment : Fragment() {
 
     private lateinit var binding: FragmentMoodPickerBinding
-    private var moodCount: MutableList<Int> = mutableListOf(0, 0, 0, 0)
+    private var moodCount: IntArray = intArrayOf(0, 0, 0, 0)
     private var selectedMood: View? = null
+    private lateinit var passMood: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +30,8 @@ class moodPickerFragment : Fragment() {
         binding.saveBtn.setOnClickListener {
             selectedMood?.let {
                 countClick(it)
-                Toast.makeText(context, "Count ${moodCount}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "Count ${moodCount}", Toast.LENGTH_SHORT).show()
+                view?.findNavController()?.navigate(MoodPickerFragmentDirections.actionMoodPickerFragmentToMoodFragment(passMood, moodCount))
             }
         }
 
@@ -100,10 +103,22 @@ class moodPickerFragment : Fragment() {
 
     private fun countClick(view: View) {
         when (view.id) {
-            R.id.angry_img -> moodCount[0] += 1
-            R.id.yummy_img -> moodCount[3] += 1
-            R.id.uwu_img -> moodCount[2] += 1
-            R.id.smug_img -> moodCount[1] += 1
+            R.id.angry_img -> {
+                moodCount[0] += 1
+                passMood = "Angry"
+            }
+            R.id.yummy_img -> {
+                moodCount[3] += 1
+                passMood = "Hungry"
+            }
+            R.id.uwu_img -> {
+                moodCount[2] += 1
+                passMood = "Relaxed"
+            }
+            R.id.smug_img -> {
+                moodCount[1] += 1
+                passMood = "Smug"
+            }
         }
     }
 

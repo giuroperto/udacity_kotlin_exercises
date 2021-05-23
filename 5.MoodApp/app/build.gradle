@@ -4,7 +4,7 @@ plugins {
 
     // Adding the apply plugin statement for safeargs
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs'
+    id ('androidx.navigation.safeargs')
 
 }
 

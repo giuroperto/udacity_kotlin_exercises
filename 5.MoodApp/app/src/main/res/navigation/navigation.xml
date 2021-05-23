@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/titleFragment"
-        android:name="com.gr.android.moodapp.titleFragment"
+        android:name="com.gr.android.moodapp.TitleFragment"
         android:label="fragment_title"
         tools:layout="@layout/fragment_title" >
         <action
@@ -17,8 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/moodPickerFragment"
-        android:name="com.gr.android.moodapp.moodPickerFragment"
-        android:label="moodPickerFragment" >
+        android:name="com.gr.android.moodapp.MoodPickerFragment"
+        android:label="moodPickerFragment"
+        tools:layout="@layout/fragment_mood_picker">
         <action
             android:id="@+id/action_moodPickerFragment_to_moodFragment"
             app:destination="@id/moodFragment" />
@@ -38,5 +39,17 @@
         android:id="@+id/moodFragment"
         android:name="com.gr.android.moodapp.MoodFragment"
         android:label="fragment_mood"
-        tools:layout="@layout/fragment_mood" />
+        tools:layout="@layout/fragment_mood">
+
+        <argument
+            android:name="moodOfTheDay"
+            app:argType="string"
+            />
+
+        <argument
+            android:name="moodCounts"
+            app:argType="integer[]"
+            />
+
+    </fragment>
 </navigation>

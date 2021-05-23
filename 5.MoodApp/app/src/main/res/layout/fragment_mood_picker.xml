@@ -16,7 +16,7 @@
         android:id="@+id/mood_picker_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".moodPickerFragment"
+        tools:context=".MoodPickerFragment"
         android:background="@color/t_dark_gray"
         >
 

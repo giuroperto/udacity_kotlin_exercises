@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.gr.android.moodapp.databinding.FragmentTitleBinding
 
-class titleFragment : Fragment() {
+class TitleFragment : Fragment() {
 
     private lateinit var binding: FragmentTitleBinding
 

@@ -12,6 +12,6 @@
         \n\nAlone, this app won\'t do much for your mental health, so it\'s on you to make some changes in your life and chase the good feelings and let
         the all the other emotions go away. </string>
     <string name="info">Info</string>
-    <string name="mood_desc">How you have felt this past days</string>
+    <string name="mood_desc">How you have felt on the past days</string>
     <string name="save">Save</string>
 </resources>
