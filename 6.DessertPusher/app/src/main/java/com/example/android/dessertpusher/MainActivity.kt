@@ -99,8 +99,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         binding.dessertButton.setImageResource(currentDessert.imageId)
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         outState.putInt(KEY_REVENUE, revenue)
         outState.putInt(KEY_DESSERTSSOLD, dessertsSold)
         outState.putInt(KEY_DESSERTSTIMER, dessertTimer.secondsCount)
