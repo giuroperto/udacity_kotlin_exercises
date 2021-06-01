@@ -78,7 +78,7 @@ class GameFragment : Fragment() {
 //    Called when the game is finished
 
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameFragmentToScoreFragment(score)
+        val action = GameFragmentDirections.actionGameFragmentToScoreFragment()
         findNavController().navigate(action)
     }
 

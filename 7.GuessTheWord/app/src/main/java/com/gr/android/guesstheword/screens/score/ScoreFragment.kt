@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gr.android.guesstheword.R
 import com.gr.android.guesstheword.databinding.FragmentScoreBinding
+import com.gr.android.guesstheword.screens.score.ScoreFragmentDirections.actionRestart
 
 /**
  * Fragment where the final score is shown, after the game is over
@@ -28,14 +29,14 @@ class ScoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_score, container, false)
 
 //        Get args using by navArgs property delegate
-//        val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
-//        binding.scoreText.text = scoreFragmentArgs.score.toString()
+        val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
+        binding.scoreText.text = scoreFragmentArgs.score.toString()
         binding.playAgainButton.setOnClickListener { onPlayAgain() }
 
         return binding.root
     }
 
     private fun onPlayAgain() {
-//        findNavController().navigate(scoreFragment.actionRestart())
+        findNavController().navigate(ScoreFragmentDirections.actionRestart())
     }
 }
