@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.gr.android.moodapp.databinding.FragmentMoodPickerBinding
 
+const val KEY_MOOD = "key_mood"
+
 class MoodPickerFragment : Fragment() {
 
     private lateinit var binding: FragmentMoodPickerBinding
@@ -36,6 +38,12 @@ class MoodPickerFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString(KEY_MOOD, passMood)
     }
 
     private fun moodListener() {
