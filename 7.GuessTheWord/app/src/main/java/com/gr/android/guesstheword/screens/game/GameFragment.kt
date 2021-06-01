@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.gr.android.guesstheword.R
@@ -32,21 +33,32 @@ class GameFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
 
         Log.i("GF", "Called ViewModelProviders.of")
-        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
-        viewModel.score.observe(viewLifecycleOwner, Observer {
-            score -> binding.scoreText.text = score.toString()
-        })
-        viewModel.word.observe(viewLifecycleOwner,  Observer {
-            word -> binding.wordText.text = word
-        })
+        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        binding.correctButton.setOnClickListener {
+               binding.correctButton.setOnClickListener {
             viewModel.onCorrect()
         }
+
         binding.skipButton.setOnClickListener {
             viewModel.onSkip()
         }
+
+        viewModel.score.observe(viewLifecycleOwner, Observer {
+                newScore -> binding.scoreText.text = newScore.toString()
+        })
+
+        viewModel.word.observe(viewLifecycleOwner,  Observer {
+                newWord -> binding.wordText.text = newWord
+        })
+
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer {
+            newEventGameFinish ->
+            if (newEventGameFinish) {
+                gameFinished()
+                viewModel.onGameFinishComplete()
+            }
+        })
 
         return binding.root
     }
