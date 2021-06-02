@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gr.android.guesstheword.R
@@ -18,6 +20,9 @@ import com.gr.android.guesstheword.screens.score.ScoreFragmentDirections.actionR
 
 class ScoreFragment : Fragment() {
 
+    private lateinit var viewModel: ScoreViewModel
+    private lateinit var viewModelFactory: ScoreViewModelFactory
+
     private lateinit var binding : FragmentScoreBinding
 
     override fun onCreateView(
@@ -28,10 +33,25 @@ class ScoreFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_score, container, false)
 
-//        Get args using by navArgs property delegate
-        val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
-        binding.scoreText.text = scoreFragmentArgs.score.toString()
-        binding.playAgainButton.setOnClickListener { onPlayAgain() }
+        viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(ScoreViewModel::class.java)
+
+        viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer {
+            isPlayAgain ->
+            if (isPlayAgain) {
+                onPlayAgain()
+                viewModel.eventFinishedComplete()
+            }
+        })
+
+        viewModel.finalScoreLiveData.observe(viewLifecycleOwner, Observer {
+            finalScore -> binding.scoreText.text = finalScore.toString()
+        })
+
+        binding.playAgainButton.setOnClickListener {
+            viewModel.eventIsFinished()
+        }
 
         return binding.root
     }

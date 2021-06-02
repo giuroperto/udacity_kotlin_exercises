@@ -37,7 +37,7 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-               binding.correctButton.setOnClickListener {
+        binding.correctButton.setOnClickListener {
             viewModel.onCorrect()
         }
 
