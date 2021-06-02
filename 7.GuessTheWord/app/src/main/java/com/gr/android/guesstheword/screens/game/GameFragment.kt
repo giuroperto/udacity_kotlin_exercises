@@ -37,21 +37,8 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-        }
-
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-        }
-
-        viewModel.score.observe(viewLifecycleOwner, Observer {
-                newScore -> binding.scoreText.text = newScore.toString()
-        })
-
-        viewModel.word.observe(viewLifecycleOwner,  Observer {
-                newWord -> binding.wordText.text = newWord
-        })
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.currentTime.observe(viewLifecycleOwner, Observer {
             newCurrentTime -> binding.timerText.text = DateUtils.formatElapsedTime(newCurrentTime)

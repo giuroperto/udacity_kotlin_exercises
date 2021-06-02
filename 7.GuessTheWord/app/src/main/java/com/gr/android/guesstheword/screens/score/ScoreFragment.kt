@@ -45,13 +45,8 @@ class ScoreFragment : Fragment() {
             }
         })
 
-        viewModel.finalScoreLiveData.observe(viewLifecycleOwner, Observer {
-            finalScore -> binding.scoreText.text = finalScore.toString()
-        })
-
-        binding.playAgainButton.setOnClickListener {
-            viewModel.eventIsFinished()
-        }
+        binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = this
 
         return binding.root
     }
