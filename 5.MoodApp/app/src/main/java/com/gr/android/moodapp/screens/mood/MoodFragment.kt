@@ -1,4 +1,4 @@
-package com.gr.android.moodapp
+package com.gr.android.moodapp.screens.mood
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.gr.android.moodapp.MoodFragmentArgs
+import com.gr.android.moodapp.R
 import com.gr.android.moodapp.databinding.FragmentMoodBinding
 
 class MoodFragment : Fragment() {

@@ -37,7 +37,7 @@
         />
     <fragment
         android:id="@+id/moodFragment"
-        android:name="com.gr.android.moodapp.MoodFragment"
+        android:name="com.gr.android.moodapp.screens.mood.MoodFragment"
         android:label="fragment_mood"
         tools:layout="@layout/fragment_mood">
 

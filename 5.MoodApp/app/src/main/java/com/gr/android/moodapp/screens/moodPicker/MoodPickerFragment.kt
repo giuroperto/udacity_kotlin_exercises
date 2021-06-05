@@ -1,4 +1,4 @@
-package com.gr.android.moodapp
+package com.gr.android.moodapp.screens.moodPicker
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.gr.android.moodapp.MoodPickerFragmentDirections
+import com.gr.android.moodapp.R
 import com.gr.android.moodapp.databinding.FragmentMoodPickerBinding
 
 const val KEY_MOOD = "key_mood"
@@ -18,6 +23,7 @@ class MoodPickerFragment : Fragment() {
     private var moodCount: IntArray = intArrayOf(0, 0, 0, 0)
     private var selectedMood: View? = null
     private lateinit var passMood: String
+    private lateinit var viewModel : MoodPickerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +33,13 @@ class MoodPickerFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mood_picker, container, false)
 
+        viewModel = ViewModelProvider(this).get(MoodPickerViewModel::class.java)
+
         moodListener()
 
         binding.saveBtn.setOnClickListener {
             selectedMood?.let {
-                countClick(it)
+                viewModel.countClick(whichMood(it))
 //                Toast.makeText(context, "Count ${moodCount}", Toast.LENGTH_SHORT).show()
                 view?.findNavController()?.navigate(MoodPickerFragmentDirections.actionMoodPickerFragmentToMoodFragment(passMood, moodCount))
             }
@@ -46,17 +54,17 @@ class MoodPickerFragment : Fragment() {
         outState.putString(KEY_MOOD, passMood)
     }
 
-    private fun moodListener() {
-        val clickableMoods: List<View> = listOf(binding.angryImg, binding.smugImg, binding.uwuImg, binding.yummyImg)
+     private fun moodListener() {
+         val clickableMoods: List<View> = listOf(binding.angryImg, binding.smugImg, binding.uwuImg, binding.yummyImg)
 
-        for (item in clickableMoods) {
-            item.setOnClickListener {
-                changeBackground(it)
-                greyAllOut(it, clickableMoods)
-                selectMood(it)
-            }
-        }
-    }
+         for (item in clickableMoods) {
+             item.setOnClickListener {
+                 changeBackground(it)
+                 greyAllOut(it, clickableMoods)
+                 selectMood(it)
+             }
+         }
+     }
 
     private fun changeBackground(view: View) {
         when (view.id) {
@@ -109,29 +117,18 @@ class MoodPickerFragment : Fragment() {
         }
     }
 
-    private fun countClick(view: View) {
-        when (view.id) {
-            R.id.angry_img -> {
-                moodCount[0] += 1
-                passMood = "Angry"
-            }
-            R.id.yummy_img -> {
-                moodCount[3] += 1
-                passMood = "Hungry"
-            }
-            R.id.uwu_img -> {
-                moodCount[2] += 1
-                passMood = "Relaxed"
-            }
-            R.id.smug_img -> {
-                moodCount[1] += 1
-                passMood = "Smug"
-            }
-        }
-    }
-
     private fun selectMood(view: View) {
         selectedMood = view
+    }
+
+    private fun whichMood(view : View) : String {
+        return when (view.id) {
+            R.id.angry_img -> "Angry"
+            R.id.yummy_img -> "Hungry"
+            R.id.uwu_img -> "Relaxed"
+            R.id.smug_img -> "Smug"
+            else -> "Other"
+        }
     }
 
 }
