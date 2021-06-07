@@ -7,9 +7,9 @@
     >
     
     <data>
-<!--        <variable-->
-<!--            name=""-->
-<!--            type="" />-->
+        <variable
+            name="moodPickerViewModel"
+            type="com.gr.android.moodapp.screens.moodPicker.MoodPickerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
