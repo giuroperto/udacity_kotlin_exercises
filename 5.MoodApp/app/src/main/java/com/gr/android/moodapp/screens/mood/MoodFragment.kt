@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.gr.android.moodapp.MoodFragmentArgs
 import com.gr.android.moodapp.R
 import com.gr.android.moodapp.databinding.FragmentMoodBinding
 

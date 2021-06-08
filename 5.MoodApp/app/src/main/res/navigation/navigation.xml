@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/moodPickerFragment"
-        android:name="com.gr.android.moodapp.MoodPickerFragment"
+        android:name="com.gr.android.moodapp.screens.moodPicker.MoodPickerFragment"
         android:label="moodPickerFragment"
         tools:layout="@layout/fragment_mood_picker">
         <action

@@ -5,13 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.gr.android.moodapp.MoodPickerFragmentDirections
 import com.gr.android.moodapp.R
 import com.gr.android.moodapp.databinding.FragmentMoodPickerBinding
 
@@ -36,6 +33,14 @@ class MoodPickerFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MoodPickerViewModel::class.java)
 
         moodListener()
+
+        viewModel.allMoods.observe(viewLifecycleOwner, Observer {
+            moodsArray -> moodCount = moodsArray
+        })
+
+        viewModel.mood.observe(viewLifecycleOwner, Observer {
+            chosenMood -> passMood = chosenMood
+        })
 
         binding.saveBtn.setOnClickListener {
             selectedMood?.let {
