@@ -13,7 +13,10 @@
         tools:layout="@layout/fragment_title" >
         <action
             android:id="@+id/action_titleFragment_to_moodPickerFragment"
-            app:destination="@id/moodPickerFragment" />
+            app:destination="@id/moodPickerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_down"
+            />
     </fragment>
     <fragment
         android:id="@+id/moodPickerFragment"
@@ -22,7 +25,10 @@
         tools:layout="@layout/fragment_mood_picker">
         <action
             android:id="@+id/action_moodPickerFragment_to_moodFragment"
-            app:destination="@id/moodFragment" />
+            app:destination="@id/moodFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_down"
+            />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
