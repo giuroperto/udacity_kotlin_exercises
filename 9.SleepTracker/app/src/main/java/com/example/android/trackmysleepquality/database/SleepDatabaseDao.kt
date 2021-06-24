@@ -30,12 +30,12 @@ interface SleepDatabaseDao {
 // during compilation, room will generate code to turn this parsed in Kotlin object into a row of
 // values for the db.
 // when we call this function, room creates the row from the entity object and inserts it into the db.
-    fun insert(night: SleepNight)
+    suspend fun insert(night: SleepNight)
 
 //    when we update it it could be that in this new object only one value is different
 //    or all of them except for the key
     @Update
-    fun update(night: SleepNight)
+    suspend fun update(night: SleepNight)
 
 //    for the other operations -> SQL queries because there are no convenience annotations that do
 //    the work we want done.
@@ -48,7 +48,7 @@ interface SleepDatabaseDao {
     //    (:key is how we reference a parameter)
 //    it will return a sleepNight or null if the key doesnt exist
     @Query(value = "SELECT * from daily_sleep_quality_table WHERE nightId = :key")
-    fun get(key: Long): SleepNight
+    suspend fun get(key: Long): SleepNight?
 
 //    to delete all rows without deleting the table
 //    Delete annotation -> delete a specific entity and do the work of choosing in our code
@@ -67,7 +67,7 @@ interface SleepDatabaseDao {
 //    uses delete from without a where constraint -> every row is deleted
 //    and associates it with the clear function
     @Query("DELETE FROM daily_sleep_quality_table")
-    fun clear()
+    suspend fun clear()
 
 //    return all the rows in a table so that we can then display a full set of data
 //    instead of one entity we want to return a list of sorted entities
@@ -85,6 +85,6 @@ interface SleepDatabaseDao {
 //    the return type sleepNight is nullable because in the beginning and after we clear the
 //    contents there's no tonight
     @Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC LIMIT 1")
-    fun getTonight(): SleepNight?
+    suspend fun getTonight(): SleepNight?
 
 }
