@@ -17,6 +17,8 @@
 <!-- Note that the animations may show red in Android Studio;
      however, they are present and working perfectly fine. -->
 
+<!--two fragments that we can navigate between them-->
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

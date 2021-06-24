@@ -22,7 +22,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.android.trackmysleepquality.R
+import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
 
 /**
@@ -37,12 +40,42 @@ class SleepTrackerFragment : Fragment() {
      *
      * This function uses DataBindingUtil to inflate R.layout.fragment_sleep_quality.
      */
+
+//    we need a reference to the app that this fragment is attached to, to pass in to the vm factory
+//    provider
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepTrackerBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_sleep_tracker, container, false)
+
+//        requireNotNull is a kotlin function that throws and illegal argument exception if the
+//        value is null
+        val application = requireNotNull(this.activity).application
+
+//        we need a reference to a data source via a reference to the DAO
+        val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
+
+//        create an instance of the viewmodelfactory
+        val viewModelFactory = SleepTrackerViewModelFactory(dataSource, application)
+
+//        having a factory, we can ask the vmprovider for a vm, passing in the factory and requesting
+//        an instance of the viewmodel
+//        specify to use the factory to build it, and get an instance of the vm class java
+        val sleepTrackerViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(SleepTrackerViewModel::class.java)
+
+//        specify the current activity as the lifecycle owner of the binding
+//        it is necessary so that the binding can observe livedata updates
+        binding.lifecycleOwner = this
+
+//        our layout needs to know about the vm -> then we can reference functions and data in the
+//        vm from the layout to display livedata
+
+//        set the variable in the view which we access through the binding object to the viewmodel
+        binding.sleepTrackerViewModel = sleepTrackerViewModel
 
         return binding.root
     }

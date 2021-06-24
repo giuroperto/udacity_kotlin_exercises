@@ -23,7 +23,11 @@
          the whole ViewModel, so that we can access the LiveData,
          click handlers, and state variables. -->
     <data>
-
+<!--        create a variable that references the vm class    -->
+        <variable
+            name="sleepTrackerViewModel"
+            type="com.example.android.trackmysleepquality.sleeptracker.SleepTrackerViewModel" />
+<!--        the type is the fully qualified vm class name-->
     </data>
 
     <!-- Start of the visible fragment layout using ConstraintLayout -->

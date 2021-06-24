@@ -24,8 +24,27 @@ import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 /**
  * ViewModel for SleepTrackerFragment.
  */
+
+//this class is the same as view model but it takes the app context as a parameter and makes it
+//available as a property
+
+//it needs access to the data in the db through the interface defined in the DAO
+// so we pass the an instance of the Dao to the class
+
+//we need the application context so we have access to resources such as strings and styles
+//and pass it to the super class as well
 class SleepTrackerViewModel(
         val database: SleepDatabaseDao,
         application: Application) : AndroidViewModel(application) {
+
+//            we need a factory to instantiate the viewmodel and provide it with the data source
+
+//            we will be using coroutines with the btn click because it triggers db operations
+//            such as creating or updating a sleep night -> do not slow down UI
+
+//            to manage all coroutines -> we need a job
+
+
+
 }
 
