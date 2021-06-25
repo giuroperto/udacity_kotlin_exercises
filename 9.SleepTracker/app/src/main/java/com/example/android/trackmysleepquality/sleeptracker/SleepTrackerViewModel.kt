@@ -17,10 +17,7 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.formatNights
@@ -84,7 +81,25 @@ class SleepTrackerViewModel(
 //    access to the string resources
     val nightsString = Transformations.map(nights) {
         nights -> formatNights(nights, application.resources)
-}
+    }
+
+//    adding the navigation event live data
+//    as we want to add navigation to the click handler, but the click handler is in the VM and the
+//    navigation is in the fragment -> so in the click handler we set a live data that changes when
+//    we want to navigate and the fragment observes this live data and when it changes, navigates,
+//    then tell the vm it is done which resets the state variable
+//    this variable is private because we don't want to expose setting this value to the fragment
+    private val _navigateToSleepQuality = MutableLiveData<SleepNight>()
+
+//    create a getter live data so the fragment can observe
+    val navigateToSleepQuality: LiveData<SleepNight>
+        get() = _navigateToSleepQuality
+
+//    immediately after navigating, we want to reset the navigation variable
+    fun doneNavigating() {
+        _navigateToSleepQuality.value = null
+    }
+
 
 //    we need the tonight asap so we can work with that -> init block\
     init {
@@ -147,6 +162,7 @@ class SleepTrackerViewModel(
     }
 
 //    click handler for the stop button
+//    here we also need to trigger the navigation to the fragment
     fun onStopTracking() {
         uiScope.launch {
 //            the return annotation -> in kotlin the return@label syntax is used for specifying which
@@ -157,6 +173,12 @@ class SleepTrackerViewModel(
             oldNight.endTimeMilli = System.currentTimeMillis()
 
             update(oldNight)
+
+//            to trigger the process of navigating in the fragment -> change the value of the variable
+//            has to be the last thing inside the launch block
+//            the oldNight is only non null only when we can set a sleep quality -> if we don't set
+//            it, we don't navigate
+            _navigateToSleepQuality.value = oldNight
         }
     }
 
