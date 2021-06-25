@@ -50,3 +50,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
+
+//if we are just setting visibility in a view, we can use view visible and view invisible
+//however, if we are changing the visibility based on a state unrelated to the view -> do it

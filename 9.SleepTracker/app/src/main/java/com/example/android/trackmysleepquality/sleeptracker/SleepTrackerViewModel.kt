@@ -83,6 +83,42 @@ class SleepTrackerViewModel(
         nights -> formatNights(nights, application.resources)
     }
 
+//    add the three enabled visibility variables from the layout and add a transformation map
+//    for each -> the state of the variable changes based on the state of tonight
+//    whenever tonight changes, these variables are updated
+    val startButtonVisible = Transformations.map(tonight) {
+//    tonight is null at the beginning, so if that's the case, we want the start button visible
+//        after we record the quality, we reset tonight
+        null == it
+}
+    val stopButtonVisible = Transformations.map(tonight) {
+//    if tonight has a value the stop btn should be visible
+        null != it
+}
+
+//    clear button should only be visible if there is any night to clear
+    val clearButtonVisible = Transformations.map(nights) {
+        it?.isNotEmpty()
+}
+
+//    using snackbars to show some short info -> it will disappear automatically either after a
+//    timeout, or after a user interaction elsewhere on the screen
+//    can also be swiped off the screen
+//    preferred way of showing info to the user -> UI thing and should happen in the fragment
+//    but deciding to show it happens in the VM -> same technique as for triggering navigation
+
+//    create two variables -> private and public
+    private var _showSnackbarEvent = MutableLiveData<Boolean>()
+
+    val showSnackbarEvent: LiveData<Boolean>
+        get() = _showSnackbarEvent
+
+//    function to call when done showing the snackbar
+    fun doneShowingSnackbar() {
+        _showSnackbarEvent.value = false
+    }
+
+
 //    adding the navigation event live data
 //    as we want to add navigation to the click handler, but the click handler is in the VM and the
 //    navigation is in the fragment -> so in the click handler we set a live data that changes when
@@ -192,6 +228,9 @@ class SleepTrackerViewModel(
         uiScope.launch {
             clear()
             tonight.value = null
+
+//            trigger the snackbar message -> state variable to true
+            _showSnackbarEvent.value = true
         }
     }
 

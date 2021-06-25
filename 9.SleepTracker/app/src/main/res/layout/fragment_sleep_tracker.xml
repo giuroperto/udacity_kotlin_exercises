@@ -67,6 +67,9 @@
              from the ViewModel. The click handler is in the ViewModel as well, and
              you can set it for the Views using this lambda pattern. -->
 
+<!--        to change visibility, add the enabled property and have it be the value of a
+state variable-->
+
         <Button
             android:id="@+id/start_button"
             style="@style/SleepButtons"
@@ -78,7 +81,8 @@
             app:layout_constraintEnd_toStartOf="@+id/stop_button"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> sleepTrackerViewModel.onStartTracking()}"/>
+            android:onClick="@{() -> sleepTrackerViewModel.onStartTracking()}"
+            android:enabled="@{sleepTrackerViewModel.startButtonVisible}" />
 <!--        @{} creates a lambda-->
 
         <Button
@@ -92,7 +96,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/start_button"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> sleepTrackerViewModel.onStopTracking()}"/>
+            android:onClick="@{() -> sleepTrackerViewModel.onStopTracking()}"
+            android:enabled="@{sleepTrackerViewModel.stopButtonVisible}" />
 
         <Button
             android:id="@+id/clear_button"
@@ -106,7 +111,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{() -> sleepTrackerViewModel.onClear()}"/>
+            android:onClick="@{() -> sleepTrackerViewModel.onClear()}"
+            android:enabled="@{sleepTrackerViewModel.clearButtonVisible}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
