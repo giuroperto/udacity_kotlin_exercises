@@ -20,8 +20,10 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
+import com.example.android.trackmysleepquality.formatNights
 import kotlinx.coroutines.*
 
 /**
@@ -69,8 +71,20 @@ class SleepTrackerViewModel(
     private var tonight = MutableLiveData<SleepNight?>()
 
 //    get all the nights in the db when we create the vm -> it is live data and room will manage
-//    if anything changes
+//    if anything changes (it is a room feature that everytime the data in the db changes,
+//    the variable will update to show the latest data
+//    YOU NEVER HAVE TO CALL SET VALUE ON THE LIVEDATA OR UPDATE IT
+//    so as it is the latest data -> display it in our textView
+//    as it is it is only going to show the object, we need to transform the data into a formatted string
     private val nights = database.getAllNights()
+
+//    new formatted variable -> it will run everytime nights receive a new data from the db
+//    through the transformations class we pass nights into the map function and define the mapping
+//    function as calling formatNights -> supply nights and resources object as it will give us
+//    access to the string resources
+    val nightsString = Transformations.map(nights) {
+        nights -> formatNights(nights, application.resources)
+}
 
 //    we need the tonight asap so we can work with that -> init block\
     init {
