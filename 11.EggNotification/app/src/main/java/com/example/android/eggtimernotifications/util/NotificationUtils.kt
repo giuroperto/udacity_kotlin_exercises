@@ -43,8 +43,17 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     // Create the content intent for the notification, which launches
     // this activity
     // TODO: Step 1.11 create intent
+//    pass a context and a activity to launch
+    val contentIntent = Intent(applicationContext, MainActivity::class.java)
 
     // TODO: Step 1.12 create PendingIntent
+//    the system will use the pendingIntent to open the app
+    val contentPendingIntent = PendingIntent.getActivity(
+        applicationContext,
+        NOTIFICATION_ID,
+        contentIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT
+    )
 
     // TODO: Step 2.0 add style
 
@@ -77,8 +86,12 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
 //    testing if it is possible to pass a null intent
 //        .setContentIntent(null)
+//        .setContentIntent(pendingIntent)
 
     // TODO: Step 1.13 set content intent
+        .setContentIntent(contentPendingIntent)
+//    to the notification dismiss itself
+        .setAutoCancel(true)
 
         // TODO: Step 2.1 add style to builder
 
