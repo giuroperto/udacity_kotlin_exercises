@@ -73,7 +73,7 @@ class SleepTrackerViewModel(
 //    YOU NEVER HAVE TO CALL SET VALUE ON THE LIVEDATA OR UPDATE IT
 //    so as it is the latest data -> display it in our textView
 //    as it is it is only going to show the object, we need to transform the data into a formatted string
-    private val nights = database.getAllNights()
+    val nights = database.getAllNights()
 
 //    new formatted variable -> it will run everytime nights receive a new data from the db
 //    through the transformations class we pass nights into the map function and define the mapping
