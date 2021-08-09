@@ -67,7 +67,7 @@ class SleepTrackerFragment : Fragment() {
 //        having a factory, we can ask the vmprovider for a vm, passing in the factory and requesting
 //        an instance of the viewmodel
 //        specify to use the factory to build it, and get an instance of the vm class java
-        val sleepTrackerViewModel = ViewModelProviders.of(this, viewModelFactory)
+        val sleepTrackerViewModel = ViewModelProvider(this, viewModelFactory)
                 .get(SleepTrackerViewModel::class.java)
 
 //        specify the current activity as the lifecycle owner of the binding
@@ -109,7 +109,7 @@ class SleepTrackerFragment : Fragment() {
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
