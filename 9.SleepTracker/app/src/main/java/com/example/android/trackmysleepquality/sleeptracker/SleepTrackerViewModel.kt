@@ -136,6 +136,18 @@ class SleepTrackerViewModel(
         _navigateToSleepQuality.value = null
     }
 
+    private val _navigateToSleepDataQuality = MutableLiveData<Long>()
+    val navigateToSleepDataQuality
+        get() = _navigateToSleepDataQuality
+
+    fun onSleepNightClicked(id: Long){
+        _navigateToSleepDataQuality.value = id
+    }
+
+    fun onSleepDataQualityNavigated() {
+        _navigateToSleepDataQuality.value = null
+    }
+
 
 //    we need the tonight asap so we can work with that -> init block\
     init {
@@ -147,7 +159,7 @@ class SleepTrackerViewModel(
 //        waiting for the result
 //        specify a scope and in that scope launch the coroutine
 //        creates the coroutine without blocking the current thread into context defined by the scope.
-        uiScope.launch {
+        viewModelScope.launch {
 
 //            unless specified otherwise, the coroutine is scheduled to execute immediately
 // get the value for tonight from the db
@@ -163,7 +175,7 @@ class SleepTrackerViewModel(
 //        to get this data, we have to create another coroutine, this time in the IO context
 //        using the IO dispatcher and call the db method to get this value
 //    returns the latest night saved in the db
-        return withContext(Dispatchers.IO) {
+//        return withContext(Dispatchers.IO) {
             var night = database.getTonight()
 
 //            if the start time and end time are the same -> continuing an existing night
@@ -171,9 +183,8 @@ class SleepTrackerViewModel(
             if (night?.endTimeMilli != night?.startTimeMilli) {
                 night = null
             }
-            night
-        }
-
+            return night
+//        }
     }
 
     fun onStartTracking() {
@@ -181,7 +192,7 @@ class SleepTrackerViewModel(
 
 //        launch a coroutine because everything will be time consuming -> db operation
 //        ui scope because we need the result to continue and update the ui
-        uiScope.launch {
+        viewModelScope.launch {
 //            new night that captures the current time as the start time
             val newNight = SleepNight()
 //            suspend function for the db operation
@@ -200,7 +211,7 @@ class SleepTrackerViewModel(
 //    click handler for the stop button
 //    here we also need to trigger the navigation to the fragment
     fun onStopTracking() {
-        uiScope.launch {
+        viewModelScope.launch {
 //            the return annotation -> in kotlin the return@label syntax is used for specifying which
 //            function among several nested ones this statement returns from
 //            return from launch not the lambda
@@ -225,7 +236,7 @@ class SleepTrackerViewModel(
     }
 
     fun onClear() {
-        uiScope.launch {
+        viewModelScope.launch {
             clear()
             tonight.value = null
 

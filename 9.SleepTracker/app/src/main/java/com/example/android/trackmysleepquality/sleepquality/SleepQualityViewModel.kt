@@ -19,6 +19,7 @@ package com.example.android.trackmysleepquality.sleepquality
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import kotlinx.coroutines.*
 
@@ -37,12 +38,12 @@ class SleepQualityViewModel (
         private val viewModelJob = Job()
 
 //            coroutine UI scope
-        private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+//        private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+//    override fun onCleared() {
+//        super.onCleared()
+//        viewModelJob.cancel()
+//    }
 
 //    after recording the quality we want to navigate back to the SleepTrackerFragment
 //    create the event variable with the backing property
@@ -59,20 +60,18 @@ class SleepQualityViewModel (
 //    create the click handler using the same coroutine pattern -> doing all in the same function
     fun onSetSleepQuality(quality: Int) {
 //    launch a coroutine in the ui scope
-        uiScope.launch {
+        viewModelScope.launch {
 //            switch to io dispatcher
-            withContext(Dispatchers.IO) {
+//            withContext(Dispatchers.IO) {
 //                get tonight using the key
-                val tonight = db.get(sleepNightKey) ?: return@withContext
+                val tonight = db.get(sleepNightKey) ?: return@launch
 //                sets the sleep quality
                 tonight.sleepQuality = quality
 //                update the db
                 db.update(tonight)
-            }
+//            }
 //            trigger navigation
             _navigateToSleepTracker.value = true
         }
     }
-
-
-        }
+}
