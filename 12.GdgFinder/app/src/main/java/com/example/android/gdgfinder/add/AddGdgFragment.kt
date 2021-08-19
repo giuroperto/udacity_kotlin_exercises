@@ -40,6 +40,8 @@ class AddGdgFragment : Fragment() {
             }
         })
 
+
+
         setHasOptionsMenu(true)
         return binding.root
     }
