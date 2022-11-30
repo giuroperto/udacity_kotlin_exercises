@@ -44,6 +44,7 @@ public class PetDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+//        sqLiteDatabase.execSQL(DELETE_);
+//        onCreate();
     }
 }

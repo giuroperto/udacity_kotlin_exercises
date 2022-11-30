@@ -120,7 +120,6 @@ public class EditorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Do nothing for now
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -134,4 +133,5 @@ public class EditorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

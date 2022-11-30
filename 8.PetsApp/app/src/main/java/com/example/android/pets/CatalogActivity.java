@@ -15,6 +15,7 @@
  */
 package com.example.android.pets;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.pets.data.PetContract;
 import com.example.android.pets.data.PetContract.PetEntry;
 import com.example.android.pets.data.PetDbHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +37,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * Displays list of pets that were entered and stored in the app.
  */
 public class CatalogActivity extends AppCompatActivity {
+
+    PetDbHelper mDbHelper = new PetDbHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +65,7 @@ public class CatalogActivity extends AppCompatActivity {
 
     private void displayDatabaseInfo() {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        PetDbHelper mDbHelper = new PetDbHelper(this);
+        // and pass the context, which is the current activity
 
         Log.d("TESTING_SQL", PetDbHelper.SQL_CREATE_PETS_TABLE);
 
@@ -98,7 +101,8 @@ public class CatalogActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                // Do nothing for now
+                insertPet();
+                displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
@@ -106,5 +110,18 @@ public class CatalogActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void insertPet() {
+
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(PetEntry.COLUMN_BREED, "Pomeranian");
+        values.put(PetEntry.COLUMN_GENDER, PetEntry.GENDER_FEMALE);
+        values.put(PetEntry.COLUMN_NAME, "Lulu");
+        values.put(PetEntry.COLUMN_WEIGHT, 10);
+
+        db.insert(PetEntry.TABLE_NAME, null, values);
     }
 }
