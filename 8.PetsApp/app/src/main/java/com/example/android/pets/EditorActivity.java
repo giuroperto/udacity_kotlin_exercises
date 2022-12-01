@@ -15,6 +15,8 @@
  */
 package com.example.android.pets;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 //import android.support.v4.app.NavUtils;
 import android.text.TextUtils;
@@ -25,10 +27,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.android.pets.data.PetContract.PetEntry;
+
+import com.example.android.pets.data.PetDbHelper;
 
 /**
  * Allows user to create a new pet or edit an existing one.
@@ -52,6 +57,8 @@ public class EditorActivity extends AppCompatActivity {
      * {@link PetEntry#GENDER_UNKNOWN}, {@link PetEntry#GENDER_MALE}, {@link PetEntry#GENDER_FEMALE}
      */
     private int mGender = PetEntry.GENDER_UNKNOWN;
+
+    PetDbHelper mDbHelper = new PetDbHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +127,8 @@ public class EditorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
+                insertPet();
+                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -134,4 +143,20 @@ public class EditorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void insertPet() {
+        ContentValues values = new ContentValues();
+        values.put(PetEntry.COLUMN_NAME, String.valueOf(mNameEditText.getText()).trim());
+        values.put(PetEntry.COLUMN_BREED, String.valueOf(mBreedEditText.getText()).trim());
+        values.put(PetEntry.COLUMN_GENDER, mGender);
+        values.put(PetEntry.COLUMN_WEIGHT, Integer.parseInt(mWeightEditText.getText().toString().trim()));
+
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        long petId = db.insert(PetEntry.TABLE_NAME, null, values);
+
+        if (petId == -1) {
+            Toast.makeText(this, "ERROR with saving pet", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Inserted id = " + petId, Toast.LENGTH_LONG).show();
+        }
+    }
 }
